@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jimeta Division Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1D1F33; /* Darker navy blue background */
+      color: white;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #004d00; /* Dark green background */
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: bold;
+      color: #FFCC00; /* Softer yellow */
+    }
+
+    .menu-icon {
+      width: 30px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 22px;
+    }
+
+    .menu-icon div {
+      height: 4px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background-color: #1D1F33;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      z-index: 1000;
+      width: 300px;
+      padding: 10px;
+    }
+
+    .menu-header {
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #005800;
+    }
+
+    .menu-header img {
+      height: 50px;
+      margin-bottom: 5px;
+    }
+
+    .menu-header h3 {
+      margin: 0;
+      color: #FFCC00;
+      font-size: 16px;
+    }
+
+    .menu-button {
+      background-color: transparent;
+      border: none;
+      color: #FFCC00;
+      text-align: left;
+      width: 100%;
+      font-size: 16px;
+      padding: 10px 0;
+      cursor: pointer;
+      border-bottom: 1px solid #005800;
+    }
+
+    .menu-content {
+      display: none;
+      padding: 5px 0 15px 0;
+      font-size: 14px;
+    }
+
+    .menu-content ul {
+      padding-left: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1D1F33;
+      color: lightgray;
+      font-size: 12px;
+    }
+
+    .social-icons img {
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    a {
+      color: #FFCC00;
+      text-decoration: none;
+    }
+
+    .dpo-button {
+      background-color: #FFCC00; /* Softer yellow button */
+      color: #1D1F33;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .dpo-name {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      display: none;
+      color: #FFCC00;
+    }
+
+    /* Animation for the homepage */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .homepage-content {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Animation for the history icon */
+    #history-icon {
+      font-size: 30px;
+      cursor: pointer;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="sam.jpg" class="logo" alt="Jimeta Division Logo">
+    <div class="header-text">
+      <h1>Jimeta Division</h1>
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+      <div class="menu-header">
+        <img src="npf-logo.png" alt="Nigeria Police Logo">
+        <h3>Nigeria Police Force</h3>
+      </div>
+
+      <a href="#homepage" class="menu-button" onclick="closeMenu()">Home</a>
+
+      <button class="menu-button" onclick="toggleSection('about')">About Us</button>
+      <div class="menu-content" id="about">
+        <p>Jimeta Division is one of the most dedicated and community-focused divisions of the Nigerian Police Force. We strive to maintain peace, enforce law, and offer an unmatched commitment to the safety of our citizens.</p>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('vision')">Our Vision</button>
+      <div class="menu-content" id="vision">
+        <ul>
+          <li>Protect and serve the community with integrity</li>
+          <li>Promote digital access, awareness, and innovation</li>
+          <li>Be the most trusted police division in Nigeria</li>
+        </ul>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('mission')">Our Mission</button>
+      <div class="menu-content" id="mission">
+        <p>Our mission is to secure lives and property by being proactive in crime prevention, quick to respond to emergencies, and firm in justice for all.</p>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('services')">Services</button>
+      <div class="menu-content" id="services">
+        <ul>
+          <li>Crime prevention and patrol</li>
+          <li>Investigation of criminal activities</li>
+          <li>Public awareness campaigns</li>
+          <li>Public relations and community engagement</li>
+        </ul>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('media')">Media Center</button>
+      <div class="menu-content" id="media">
+        <p>Stay informed with the latest news, updates, and media releases from Jimeta Division. We regularly publish important notices and alerts.</p>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('contact')">Contact Us</button>
+      <div class="menu-content" id="contact">
+        <div class="social-icons">
+          <img src="facebook.png" alt="Facebook">
+          <img src="twitter.png" alt="Twitter">
+          <img src="instagram.png" alt="Instagram">
+        </div>
+      </div>
+
+      <button class="menu-button" onclick="toggleSection('faq')">FAQ</button>
+      <div class="menu-content" id="faq">
+        <ul>
+          <li>How do I report a crime? Call us directly or visit the nearest police station.</li>
+          <li>What is the process for filing a complaint? Complaints can be submitted in person or online through our portal.</li>
+          <li>How do I contact the DPO? Visit the station or send an email to dpo@jimeta-police.gov.ng.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Page -->
+  <div id="homepage" class="homepage-content" style="padding: 20px;">
+    <h2 style="color: #FFCC00;">Welcome to Jimeta Division</h2>
+    <p style="color: #BDBDBD;">Proudly serving our community with honour, discipline, and duty.</p>
+
+    <h3 id="history-icon" style="color: #FFCC00; font-size: 36px;" onclick="toggleHistory()">History</h3>
+    <div id="history-content" style="display:none; font-size: 18px; color: white;">
+      <p>Jimeta Division, located in Jimeta, Adamawa State, Nigeria, is a key part of the Nigerian Police Force. Over the years, this division has established itself as a community-driven, integrity-based police department. With its roots deep in the history of Nigeria, Jimeta Division has focused on providing safety and security for residents and ensuring law and order. This division has seen tremendous growth and has evolved with the times, adjusting its approach to policing with modern technologies and methods. The division plays a vital role in maintaining peace and order while upholding the rights of citizens. Its commitment to justice and public service has earned it recognition as one of the most reliable divisions in the region.</p>
+    </div>
+
+    <!-- DPO Section -->
+    <button class="dpo-button" onclick="showDPO()">DPO</button>
+    <div id="dpoName" class="dpo-name">Satimari Jasini</div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 Jimeta Division. All rights reserved.</p>
+    <div class="social-icons">
+      <img src="facebook.png" alt="Facebook">
+      <img src="twitter.png" alt="Twitter">
+      <img src="instagram.png" alt="Instagram">
+      <img src="linkedin.png" alt="LinkedIn">
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      var menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function toggleSection(id) {
+      const sections = document.querySelectorAll('.menu-content');
+      sections.forEach(section => {
+        if (section.id === id) {
+          section.style.display = section.style.display === "block" ? "none" : "block";
+        } else {
+          section.style.display = "none";
+        }
+      });
+    }
+
+    function closeMenu() {
+      document.getElementById("dropdownMenu").style.display = "none";
+    }
+
+    function showDPO() {
+      document.getElementById("dpoName").style.display = "block";
+    }
+
+    function toggleHistory() {
+      var historyContent = document.getElementById("history-content");
+      historyContent.style.display = historyContent.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
+</body>
+</html>
